@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
+            $table->string('kode');
             $table->boolean('status')->default(false);
             $table->string('jumlah');
             $table->string('paket');

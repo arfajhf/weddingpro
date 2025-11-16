@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\PaymentController;
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
@@ -11,7 +13,21 @@ Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
+Route::controller(UserController::class)->group(function () {
+    Route::get('user', 'index')->name('get.user');
+});
+
+Route::controller(PaymentController::class)->group(function(){
+    Route::get('konfirmasi', 'index')->name('payment.konfir');
+    Route::get('selesai', 'index')->name('payment.selesai');
+    Route::get('riwayatlangganan', 'index')->name('riwayat');
+    Route::get('langganan', 'berlangganan')->name('berlangganan');
+    Route::get('pesan', 'create')->name('payment.create');
+    Route::post('pesan', 'store')->name('post.pesan');
+});
+
 Route::middleware(['auth'])->group(function () {
+
     Route::redirect('settings', 'settings/profile');
 
     Volt::route('settings/profile', 'settings.profile')->name('profile.edit');
@@ -19,8 +35,8 @@ Route::middleware(['auth'])->group(function () {
     Volt::route('settings/appearance', 'settings.appearance')->name('appearance.edit');
 });
 
-Route::get('tmplt', function(){
+Route::get('tmplt', function () {
     return view('template/template1');
 })->name('user');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

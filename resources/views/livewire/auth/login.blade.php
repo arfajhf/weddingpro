@@ -119,7 +119,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
         </div>
 
         <!-- Remember Me -->
-        <flux:checkbox wire:model="remember" :label="__('Remember me')" />
+        <flux:checkbox wire:model="remember" :label="__('Remember me')" checked/>
 
         <div class="flex items-center justify-end">
             <flux:button variant="primary" type="submit" class="w-full" data-test="login-button">

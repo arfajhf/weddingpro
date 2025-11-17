@@ -46,6 +46,9 @@ $(document).ready(function() {
 
             modal.find('#admin-form').attr('action', action_url);
             modal.find('#admin-form-id-input').val(id);
+            if(button.data('status') === 1){
+                modal.find('#konfir').prop('disabled', true);
+            }
 
         } else {
             // INI UNTUK MODAL USER

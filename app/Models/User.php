@@ -61,7 +61,8 @@ class User extends Authenticatable
             ->implode('');
     }
 
-    public function payment(){
+    public function payment(): hasMany
+    {
         return $this->hasMany(Payment::class, 'user_id');
     }
 

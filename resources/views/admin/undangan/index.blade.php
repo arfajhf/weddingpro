@@ -1,8 +1,6 @@
 @extends('layout.header')
 @title('Berlangganan')
 @section('content')
-
-@if(!empty($undangans) && $undangans->count())
     <style>
         /* small tweaks */
         .card-guest { border-radius: 12px; overflow: hidden; box-shadow: 0 6px 18px rgba(0,0,0,0.06); }
@@ -15,22 +13,24 @@
         }
     </style>
 
-    <div class="mb-4">
-        <div class="d-flex align-items-center justify-content-between mb-2">
-            <h5 class="m-0">Undangan Terbaru</h5>
-            <a href="{{ route('undangan.create') }}" class="btn btn-sm btn-primary">Buat Undangan</a>
-        </div>
 
-        @if(session('success'))
-            <div class="alert alert-success custom-alert" role="alert">
-                <strong>Success!</strong> {{ session('success') }}
-            </div>
-        @endif
-        @if(session('error'))
-            <div class="alert alert-danger custom-alert" role="alert">
-                <strong>Error!</strong> {{ session('error') }}
-            </div>
-        @endif
+<div class="mb-4">
+    <div class="d-flex align-items-center justify-content-between mb-2">
+        <h5 class="m-0">Undangan Terbaru</h5>
+        <a href="{{ route('undangan.create') }}" class="btn btn-sm btn-primary">Buat Undangan</a>
+    </div>
+
+    @if(session('success'))
+    <div class="alert alert-success custom-alert" role="alert">
+        <strong>Success!</strong> {{ session('success') }}
+    </div>
+    @endif
+    @if(session('error'))
+    <div class="alert alert-danger custom-alert" role="alert">
+        <strong>Error!</strong> {{ session('error') }}
+    </div>
+    @endif
+    @if(!empty($undangans) && $undangans->count())
 
         <div class="row g-3">
             @foreach($undangans as $u)
@@ -55,7 +55,7 @@
 
                             <div class="mt-auto">
                                 <div class="d-grid gap-2">
-                                    <a href="{{ url($u->slug) }}" target="_blank" class="btn btn-sm btn-primary">Lihat Undangan</a>
+                                    <a href="{{ url('show/' . $u->slug) }}" target="_blank" class="btn btn-sm btn-primary">Lihat Undangan</a>
 
                                     <div class="d-flex gap-2 mt-2">
                                         <a href="{{ route('undangan.edit', $u->id) }}" class="btn btn-outline-secondary btn-icon flex-fill" title="Edit">

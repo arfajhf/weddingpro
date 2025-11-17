@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Payment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class PaymentController extends Controller
 {
@@ -59,5 +60,49 @@ class PaymentController extends Controller
         ]);
 
         return redirect()->route('riwayat')->with('success', 'Pembayaran Berhasil');
+    }
+
+    public function imagePayment(Request $request)
+    {
+        $request->validate([
+            'bukti_pembayaran' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'id' => 'required|exists:payments,id'
+        ]);
+
+        // dd($request);
+
+        $payment = Payment::findOrFail($request->id);
+
+        $oldPath = $payment->bukti_pembayaran;
+
+        $path = null;
+        if ($request->hasFile('bukti_pembayaran')) {
+            $path = $request->file('bukti_pembayaran')->store('bukti_pembayaran', 'public');
+        }
+
+        $payment->update([
+            'bukti_pembayaran' => $path,
+        ]);
+
+        if ($oldPath) {
+            Storage::disk('public')->delete($oldPath);
+        }
+
+        return redirect()->route('riwayat')->with('success', 'Bukti pembayaran berhasil di-update.');
+    }
+
+    public function konfirmasi(Request $request){
+        $request->validate([
+            'id' => 'required'
+        ]);
+
+        $payment = Payment::findOrFail($request->id);
+
+        $payment->update([
+            'status' => 1
+        ]);
+
+        return redirect()->route('riwayat')->with('success', 'Status berhasil di-update.');
+
     }
 }

@@ -27,6 +27,8 @@ Route::controller(PaymentController::class)->group(function(){
     Route::get('langganan', 'berlangganan')->name('berlangganan');
     Route::get('pesan', 'create')->name('payment.create');
     Route::post('pesan', 'store')->name('post.pesan');
+    Route::post('pembayaran', 'imagePayment')->name('image.payment');
+    Route::post('konfirmasi', 'konfirmasi')->name('konfirmasi');
 });
 
 Route::middleware(['auth'])->group(function () {
@@ -40,7 +42,7 @@ Route::middleware(['auth'])->group(function () {
 
 Route::resource('undangan', UndanganController::class)->except('show')->middleware(['auth', 'verified']);
 Route::resource('undangan.galeri', GaleriController::class)->shallow()->only(['store'])->middleware(['auth', 'verified']);
-Route::get('/{slug}', [UndanganController::class, 'show'])->name('undangan.public.show');
+Route::get('show/{slug}', [UndanganController::class, 'show'])->name('undangan.public.show');
 
 Route::get('tmplt', function () {
     return view('template/template1');

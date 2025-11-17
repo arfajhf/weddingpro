@@ -218,7 +218,7 @@
                             @if ($latest_payment && $latest_payment->status == 1)
                                 <li class="sidebar-item">
                                     <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                        href="table-responsive.html" aria-expanded="false">
+                                        href="{{ route('undangan.index') }}" aria-expanded="false">
                                         <i class="mdi mdi-border-style"></i>
                                         <span class="hide-menu">Undangan Saya</span>
                                     </a>
@@ -273,6 +273,7 @@
     <!-- Bootstrap tether Core JavaScript -->
     <script src="{{ url('assets/libs/popper.js/dist/umd/popper.min.js') }}"></script>
     <script src="{{ url('assets/libs/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    <script src="{{ url('assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
     <!-- apps -->
     <script src="{{ url('dist/js/app.min.js') }}"></script>
     <script src="{{ url('dist/js/app.init.dark.js') }}"></script>

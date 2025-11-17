@@ -5,6 +5,9 @@ use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
+use App\Http\Controllers\Admin\UndanganController;
+use App\Http\Controllers\Admin\GaleriController;
+
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
@@ -34,6 +37,10 @@ Route::middleware(['auth'])->group(function () {
     Volt::route('settings/password', 'settings.password')->name('password.edit');
     Volt::route('settings/appearance', 'settings.appearance')->name('appearance.edit');
 });
+
+Route::resource('undangan', UndanganController::class)->except('show')->middleware(['auth', 'verified']);
+Route::resource('undangan.galeri', GaleriController::class)->shallow()->only(['store'])->middleware(['auth', 'verified']);
+Route::get('/{slug}', [UndanganController::class, 'show'])->name('undangan.public.show');
 
 Route::get('tmplt', function () {
     return view('template/template1');

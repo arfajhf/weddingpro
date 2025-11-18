@@ -22,6 +22,7 @@ class UndanganRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'template' => ['sometimes', 'in:weddingpro-1,weddingpro-2,weddingpro-3'],
             'nama_pria' => ['required'],
             'nama_wanita' => ['required'],
             'tanggal_akad' => ['required'],

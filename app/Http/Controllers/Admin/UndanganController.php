@@ -26,7 +26,7 @@ class UndanganController extends Controller
         $undangan = UserWadding::where('slug', $slug)->with('galeries')->first() or abort(404);
         $galeri = $undangan->galeries->first();
 
-        return view('template.show', compact('undangan', 'galeri'));
+        return view("template.{$undangan->template}", compact('undangan', 'galeri'));
     }
     public function create(Request $request)
     {

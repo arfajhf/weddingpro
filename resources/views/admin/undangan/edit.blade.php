@@ -15,6 +15,23 @@
             @method('PUT')
 
             <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Template</label>
+                        <select name="template" class="form-control @error('template') is-invalid @enderror" required>
+                            <option value="" disabled>Select an template</option>
+                            <option value="weddingpro-1" {{ (old('template', $undangan->template) == 'weddingpro-1') ? 'selected' : '' }}>WeddingPro 1</option>
+                            <option value="weddingpro-2" {{ (old('template', $undangan->template) == 'weddingpro-2') ? 'selected' : '' }}>WeddingPro 2</option>
+                            <option value="weddingpro-3" {{ (old('template', $undangan->template) == 'weddingpro-3') ? 'selected' : '' }}>WeddingPro 3</option>
+                        </select>
+                        @error('template')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Nama Pria</label>

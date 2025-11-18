@@ -170,8 +170,8 @@
                 <div class="row justify-content-center align-items-center g-5">
                     <div class="col-md-5" data-aos="fade-right">
                         <div class="card-mempelai text-center">
-                            <img src="{{ $undangan->foto_pria ? Storage::url($undangan->foto_pria) : 'https://via.placeholder.com/180' }}" 
-                                 alt="Mempelai Pria" 
+                            <img src="{{ $undangan->foto_pria ? Storage::url($undangan->foto_pria) : 'https://via.placeholder.com/180' }}"
+                                 alt="Mempelai Pria"
                                  class="mx-auto mb-3">
                             <h3 class="display-font my-3">{{ $undangan->nama_pria }}</h3>
                             <p>{{ $undangan->ortu_pria }}</p>
@@ -184,8 +184,8 @@
 
                     <div class="col-md-5" data-aos="fade-left">
                         <div class="card-mempelai text-center">
-                            <img src="{{ $undangan->foto_wanita ? Storage::url($undangan->foto_wanita) : 'https://via.placeholder.com/180' }}" 
-                                 alt="Mempelai Wanita" 
+                            <img src="{{ $undangan->foto_wanita ? Storage::url($undangan->foto_wanita) : 'https://via.placeholder.com/180' }}"
+                                 alt="Mempelai Wanita"
                                  class="mx-auto mb-3">
                             <h3 class="display-font my-3">{{ $undangan->nama_wanita }}</h3>
                             <p>{{ $undangan->ortu_wanita }}</p>
@@ -219,8 +219,8 @@
                                     {!! nl2br(e($undangan->alamat_akad)) !!}
                                 </p>
                                 @if($undangan->gmaps_akad)
-                                    <a href="{{ $undangan->gmaps_akad }}" 
-                                       target="_blank" 
+                                    <a href="{{ $undangan->gmaps_akad }}"
+                                       target="_blank"
                                        class="btn btn-outline-dark btn-sm">
                                         Lihat Peta
                                     </a>
@@ -246,8 +246,8 @@
                                     {!! nl2br(e($undangan->alamat_resepsi)) !!}
                                 </p>
                                 @if($undangan->gmaps_resepsi)
-                                    <a href="{{ $undangan->gmaps_resepsi }}" 
-                                       target="_blank" 
+                                    <a href="{{ $undangan->gmaps_resepsi }}"
+                                       target="_blank"
                                        class="btn btn-outline-dark btn-sm">
                                         Lihat Peta
                                     </a>
@@ -295,7 +295,7 @@
                                 }
                             }
                         }
-                        
+
                         while (count($galleryImages) < 6) {
                             $galleryImages[] = 'https://via.placeholder.com/400x400.png?text=Foto';
                         }
@@ -303,8 +303,8 @@
 
                     @foreach($galleryImages as $index => $imageSource)
                         <div class="col-md-4 col-6" data-aos="fade-up" data-aos-delay="{{ ($index % 3) * 100 }}">
-                            <img src="{{ $imageSource }}" 
-                                 class="img-fluid rounded shadow" 
+                            <img src="{{ $imageSource }}"
+                                 class="img-fluid rounded shadow"
                                  alt="Foto Galeri {{ $index + 1 }}">
                         </div>
                     @endforeach
@@ -316,31 +316,31 @@
             <div class="container text-center" style="max-width: 700px;">
                 <h2 class="display-font" data-aos="fade-up">Kirim Hadiah</h2>
                 <p class="text-muted mb-4" data-aos="fade-up" data-aos-delay="100">
-                    Doa restu Anda merupakan karunia yang sangat berarti bagi kami. 
+                    Doa restu Anda merupakan karunia yang sangat berarti bagi kami.
                     Namun jika memberi adalah ungkapan tanda kasih, Anda dapat memberi kado secara digital.
                 </p>
 
                 <div class="accordion" id="gift-accordion" data-aos="fade-up" data-aos-delay="200">
                     <div class="accordion-item">
                         <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" 
-                                    type="button" 
-                                    data-bs-toggle="collapse" 
-                                    data-bs-target="#bank-transfer-section" 
-                                    aria-expanded="false" 
+                            <button class="accordion-button collapsed"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#bank-transfer-section"
+                                    aria-expanded="false"
                                     aria-controls="bank-transfer-section">
                                 <i class="bi bi-bank me-2"></i> Transfer Bank
                             </button>
                         </h2>
-                        <div id="bank-transfer-section" 
-                             class="accordion-collapse collapse" 
+                        <div id="bank-transfer-section"
+                             class="accordion-collapse collapse"
                              data-bs-parent="#gift-accordion">
                             <div class="accordion-body text-start">
                                 <p>
-                                    <strong>{{ $undangan->nama_bank ?? 'Bank' }}: {{ $undangan->no_rekening ?? '1234567890' }}</strong> 
+                                    <strong>{{ $undangan->nama_bank ?? 'Bank' }}: {{ $undangan->no_rekening ?? '1234567890' }}</strong>
                                     a.n {{ $undangan->nama_pemilik ?? 'Nama Pemilik' }}
                                 </p>
-                                <button class="btn btn-sm btn-outline-dark" 
+                                <button class="btn btn-sm btn-outline-dark"
                                         onclick="copyAccountNumber('{{ $undangan->no_rekening ?? '' }}')">
                                     Salin No. Rekening
                                 </button>
@@ -350,21 +350,21 @@
 
                     <div class="accordion-item">
                         <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" 
-                                    type="button" 
-                                    data-bs-toggle="collapse" 
-                                    data-bs-target="#ewallet-section" 
-                                    aria-expanded="false" 
+                            <button class="accordion-button collapsed"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#ewallet-section"
+                                    aria-expanded="false"
                                     aria-controls="ewallet-section">
                                 <i class="bi bi-wallet2 me-2"></i> E-Wallet
                             </button>
                         </h2>
-                        <div id="ewallet-section" 
-                             class="accordion-collapse collapse" 
+                        <div id="ewallet-section"
+                             class="accordion-collapse collapse"
                              data-bs-parent="#gift-accordion">
                             <div class="accordion-body">
-                                <img src="{{ asset('images/qr-placeholder.png') }}" 
-                                     alt="QR Code" 
+                                <img src="{{ asset('images/qr-placeholder.png') }}"
+                                     alt="QR Code"
                                      class="img-fluid">
                                 <p class="mt-2">Scan QR Code (Gopay/OVO/Dana)</p>
                             </div>
@@ -385,17 +385,17 @@
                     @csrf
                     <div class="mb-3">
                         <label for="guest-name" class="form-label">Nama Anda</label>
-                        <input type="text" 
-                               class="form-control" 
-                               id="guest-name" 
-                               name="name" 
+                        <input type="text"
+                               class="form-control"
+                               id="guest-name"
+                               name="name"
                                required>
                     </div>
 
                     <div class="mb-3">
                         <label for="attendance-confirmation" class="form-label">Konfirmasi Kehadiran</label>
-                        <select class="form-select" 
-                                id="attendance-confirmation" 
+                        <select class="form-select"
+                                id="attendance-confirmation"
                                 name="presence">
                             <option value="">Pilih salah satu</option>
                             <option value="Hadir">Hadir</option>
@@ -405,10 +405,10 @@
 
                     <div class="mb-3">
                         <label for="guest-message" class="form-label">Ucapan & Doa</label>
-                        <textarea class="form-control" 
-                                  id="guest-message" 
-                                  name="message" 
-                                  rows="4" 
+                        <textarea class="form-control"
+                                  id="guest-message"
+                                  name="message"
+                                  rows="4"
                                   required></textarea>
                     </div>
 
@@ -474,7 +474,7 @@
             @php
                 $weddingDate = \Carbon\Carbon::parse($undangan->tanggal_resepsi)->format('Y-m-d');
                 $weddingTime = $undangan->waktu_resepsi ?? '08:00:00';
-                
+
                 if (strlen($weddingTime) == 5) {
                     $weddingTime .= ':00';
                 }
@@ -512,7 +512,7 @@
                 document.getElementById("countdown-seconds").innerText = padNumber(seconds);
             }
 
-            updateCountdown(); 
+            updateCountdown();
         })();
     </script>
 </body>

@@ -13,6 +13,7 @@ class UserWadding extends Model
 
     protected $fillable = [
         'user_id',
+        'template',
         'nama_pria',
         'nama_wanita',
         'tanggal_akad',

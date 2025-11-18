@@ -49,14 +49,16 @@
                                     <h6 class="card-title mb-0 text-truncate" title="{{ $u->nama_wanita }} & {{ $u->nama_pria }}">
                                         {{ $u->nama_wanita }} &amp; {{ $u->nama_pria }} <small class="text-muted"></small>
                                     </h6>
-                                    <p class="small text-muted mb-0">{{ $dateStr }} @if($u->waktu_resepsi) • {{ $u->waktu_resepsi }} @endif</p>
+                                    <p class="small text-muted mb-0">{{ $dateStr }} @if($u->waktu_resepsi) • {{ $u->waktu_resepsi }} @endif</p><hr/>
+                                    <p class="small text-muted mb-0">Template: {{ $u->template === 'weddingpro-1' ? 'WeddingPro 1' : ($u->template === 'weddingpro-2' ? 'WeddingPro 2' : 'WeddingPro 3') }}</p>
                                 </div>
                             </div>
 
                             <div class="mt-auto">
                                 <div class="d-grid gap-2">
-                                    <a href="{{ url('show/' . $u->slug) }}" target="_blank" class="btn btn-sm btn-primary">Lihat Undangan</a>
-
+                                    <div class="form-group">
+                                        <a href="{{ url('show/' . $u->slug) }}" target="_blank" class="btn btn-sm btn-primary d-block w-100">Lihat Undangan</a>
+                                    </div>
                                     <div class="d-flex gap-2 mt-2">
                                         <a href="{{ route('undangan.edit', $u->id) }}" class="btn btn-outline-secondary btn-icon flex-fill" title="Edit">
                                             ✏️ Edit

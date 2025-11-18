@@ -16,11 +16,11 @@ Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
-Route::controller(UserController::class)->group(function () {
+Route::controller(UserController::class)->middleware(['auth', 'verified'])->group(function () {
     Route::get('user', 'index')->name('get.user');
 });
 
-Route::controller(PaymentController::class)->group(function(){
+Route::controller(PaymentController::class)->middleware(['auth', 'verified'])->group(function(){
     Route::get('konfirmasi', 'index')->name('payment.konfir');
     Route::get('selesai', 'index')->name('payment.selesai');
     Route::get('riwayatlangganan', 'index')->name('riwayat');

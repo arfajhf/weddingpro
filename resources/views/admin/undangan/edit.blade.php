@@ -171,7 +171,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Nama Ortu Pria</label>
-                        <input type="text" class="form-control @error('ortu_pria') is-invalid @enderror" name="ortu_pria" value="{{ old('ortu_pria', $undangan->nama_wanita) }}">
+                        <input type="text" class="form-control @error('ortu_pria') is-invalid @enderror" name="ortu_pria" value="{{ old('ortu_pria', $undangan->ortu_pria) }}">
                         @error('ortu_pria')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror

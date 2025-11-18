@@ -316,64 +316,71 @@
     </script>
     <script>
     // --- Dynamic countdown (robust, pakai ISO 8601 dengan timezone +07:00) ---
-    ;(function () {
-        // ambil tanggal & waktu dari server (format diambil dari model)
-        // pastikan $undangan->tanggal_resepsi dalam Y-m-d dan waktu dalam H:i:s atau H:i
+    (function () {
+        // 1. Siapkan Data Tanggal dari PHP ke Javascript dengan aman
         @php
-            $date = optional($undangan->tanggal_resepsi)->format('Y-m-d');
-            $time = $undangan->waktu_resepsi ?? null;
-            // normalize time: jika hanya 'HH:MM' tanpa detik, tambahkan :00
-            if ($time && !preg_match('/^\d{2}:\d{2}:\d{2}$/', $time)) {
-                if (preg_match('/^\d{2}:\d{2}$/', $time)) {
-                    $time = $time . ':00';
-                }
+            // Default tanggal jika data kosong (untuk mencegah error)
+            $defaultDate = now()->addDays(7)->format('Y-m-d');
+            $defaultTime = '08:00:00';
+
+            // Ambil tanggal resepsi
+            $tgl = optional($undangan->tanggal_resepsi)->format('Y-m-d') ?? $defaultDate;
+
+            // Ambil waktu resepsi, bersihkan formatnya
+            $waktu = $undangan->waktu_resepsi ?? $defaultTime;
+            // Pastikan format H:i:s (tambah :00 jika cuma H:i)
+            if (strlen($waktu) == 5) {
+                $waktu .= ':00';
             }
         @endphp
 
-        // jika tanggal ada, buat ISO string dengan offset +07:00 (Jakarta)
-        @if($date)
-            const weddingIso = "{{ $date }}T{{ $time ?? '11:00:00' }}+07:00";
-            const weddingTimestamp = new Date(weddingIso).getTime();
-        @else
-            // fallback: gunakan tanggal statis (Sep 27, 2025 11:00)
-            const weddingTimestamp = new Date("Sep 27, 2025 11:00:00 GMT+0700").getTime();
-        @endif
+        // 2. Buat target waktu dalam format ISO yang aman (YYYY-MM-DDTHH:mm:ss)
+        // Kita asumsikan waktu pernikahan adalah Waktu Lokal lokasi acara.
+        const targetString = "{{ $tgl }}T{{ $waktu }}";
+        const targetDate = new Date(targetString).getTime();
 
-        // util: pad number
-        function pad(n) { return n < 10 ? '0' + n : n; }
+        // Fungsi helper untuk nambah angka 0 di depan (01, 02, dst)
+        function pad(n) {
+            return (n < 10 ? '0' : '') + n;
+        }
 
-        // update DOM function
+        // Fungsi update UI
         function updateCountdown() {
-            const now = Date.now();
-            let distance = weddingTimestamp - now;
+            const now = new Date().getTime();
+            const distance = targetDate - now;
 
-            if (distance <= 0) {
-                document.getElementById("days").innerText = '00';
-                document.getElementById("hours").innerText = '00';
-                document.getElementById("minutes").innerText = '00';
-                document.getElementById("seconds").innerText = '00';
-                document.getElementById("countdown").innerHTML = "<div>Acara Telah Berlangsung</div>";
-                clearInterval(window._weddingCountdownInterval);
+            // Jika waktu sudah lewat
+            if (distance < 0) {
+                document.getElementById("days").innerText = "00";
+                document.getElementById("hours").innerText = "00";
+                document.getElementById("minutes").innerText = "00";
+                document.getElementById("seconds").innerText = "00";
+
+                // Opsional: Ganti tampilan jika acara selesai
+                // document.getElementById("countdown").innerHTML = "<div class='text-center w-100'>Alhamdulillah, Acara Telah Selesai</div>";
+
+                clearInterval(intervalId);
                 return;
             }
 
+            // Rumus Matematika Waktu (Standar & Akurat)
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            distance -= days * (1000 * 60 * 60 * 24);
-            const hours = Math.floor(distance / (1000 * 60 * 60));
-            distance -= hours * (1000 * 60 * 60);
-            const minutes = Math.floor(distance / (1000 * 60));
-            distance -= minutes * (1000 * 60);
-            const seconds = Math.floor(distance / 1000);
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
+            // Update HTML
             document.getElementById("days").innerText = pad(days);
             document.getElementById("hours").innerText = pad(hours);
             document.getElementById("minutes").innerText = pad(minutes);
             document.getElementById("seconds").innerText = pad(seconds);
         }
 
-        // run first frame then interval (store interval so we can clear later)
+        // Jalankan sekali agar tidak ada delay 1 detik saat load
         updateCountdown();
-        window._weddingCountdownInterval = setInterval(updateCountdown, 1000);
+
+        // Jalankan interval setiap 1 detik
+        const intervalId = setInterval(updateCountdown, 1000);
     })();
 </script>
 

@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\UndanganController;
 use App\Http\Controllers\Admin\GaleriController;
 
@@ -12,9 +13,9 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
+Route::controller(DashboardController::class)->middleware(['auth', 'verified'])->group(function(){
+    Route::get('dashboard', 'index')->name('dashboard');
+});
 
 Route::controller(UserController::class)->middleware(['auth', 'verified'])->group(function () {
     Route::get('user', 'index')->name('get.user');

@@ -1,5 +1,5 @@
 @extends('layout.header')
-@title('Berlangganan')
+@title('Undangan')
 @section('content')
     <style>
         /* small tweaks */

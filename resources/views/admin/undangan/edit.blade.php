@@ -1,5 +1,5 @@
-
 @extends('layout.header')
+@title('Ubah Undangan')
 @section('content')
 
 <div class="card">

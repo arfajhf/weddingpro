@@ -118,15 +118,6 @@
                                     </div>
                                 </div>
                                 <div class="profile-dis scrollable">
-                                    <a class="dropdown-item" href="javascript:void(0)">
-                                        <i class="ti-user m-r-5 m-l-5"></i> My Profile</a>
-                                    <a class="dropdown-item" href="javascript:void(0)">
-                                        <i class="ti-wallet m-r-5 m-l-5"></i> My Balance</a>
-                                    <a class="dropdown-item" href="javascript:void(0)">
-                                        <i class="ti-email m-r-5 m-l-5"></i> Inbox</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="javascript:void(0)">
-                                        <i class="ti-settings m-r-5 m-l-5"></i> Account Setting</a>
                                     <div class="dropdown-divider"></div>
                                     <form method="POST" action="{{ route('logout') }}"
                                         onsubmit="return confirm('Apakah Anda yakin ingin logout?');">
@@ -176,13 +167,13 @@
                                     <span class="hide-menu">Pelanggan</span>
                                 </a>
                             </li>
-                            <li class="sidebar-item">
+                            {{-- <li class="sidebar-item">
                                 <a class="sidebar-link waves-effect waves-dark sidebar-link"
                                     href="table-responsive.html" aria-expanded="false">
                                     <i class="mdi mdi-border-style"></i>
                                     <span class="hide-menu">Undangan</span>
                                 </a>
-                            </li>
+                            </li> --}}
 
                             <li class="nav-small-cap">
                                 <i class="mdi mdi-dots-horizontal"></i>

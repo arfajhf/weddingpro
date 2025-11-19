@@ -194,12 +194,12 @@
                 <div class="col-md-5 col-lg-4">
                     <div class="card text-center p-4">
                         <div class="card-body">
-                            <h5 class="card-title text-muted">GRATIS</h5>
-                            <h2 class="card-title fw-bold my-3">Rp 0</h2>
+                            <h5 class="card-title text-muted">Paket Hemat</h5>
+                            <h2 class="card-title fw-bold my-3">Rp 69.000</h2>
                             <ul class="list-unstyled my-4">
                                 <li><i class="bi bi-check-circle-fill text-success"></i> 1 Desain Undangan</li>
                                 <li><i class="bi bi-check-circle-fill text-success"></i> Batas Tamu 50 Orang</li>
-                                <li><i class="bi bi-x-circle-fill text-danger"></i> Tanpa Galeri Foto</li>
+                                <li><i class="bi bi-check-circle-fill text-success"></i> Tanpa Galeri Foto</li>
                                 <li><i class="bi bi-x-circle-fill text-danger"></i> Terdapat Iklan</li>
                             </ul>
                             <a href="{{route('login')}}" class="btn btn-outline-primary w-100">Pilih Paket</a>
@@ -230,7 +230,7 @@
         <div class="container text-center">
             <h2 class="fw-bold">Siap Membuat Momen Spesialmu Lebih Berkesan?</h2>
             <p class="lead text-muted my-3">Jangan tunda lagi. Mulai buat undangan digital impianmu sekarang juga!</p>
-            <a href="{{route('login')}}" class="btn btn-primary btn-lg rounded-pill mt-3">Buat Undangan Gratis <i class="bi bi-arrow-right-short"></i></a>
+            <a href="{{route('login')}}" class="btn btn-primary btn-lg rounded-pill mt-3">Buat Undangan Sekarang <i class="bi bi-arrow-right-short"></i></a>
         </div>
     </section>
 

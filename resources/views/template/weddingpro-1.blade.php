@@ -381,14 +381,27 @@
                     Berikan ucapan dan doa restu Anda kepada kami.
                 </p>
 
-                <form action="" method="POST" data-aos="fade-up" data-aos-delay="200">
+                <form action="{{ route('undangan.ucapan') }}" method="POST" data-aos="fade-up" data-aos-delay="200">
                     @csrf
+
                     <div class="mb-3">
                         <label for="guest-name" class="form-label">Nama Anda</label>
+                        <input type="hidden"
+                               class="form-control"
+                               id="guest-name"
+                               name="id"
+                               required
+                               value="{{ $undangan->id }}">
+                        <input type="hidden"
+                               class="form-control"
+                               id="guest-name"
+                               name="path"
+                               required
+                               value="{{ $slug }}">
                         <input type="text"
                                class="form-control"
                                id="guest-name"
-                               name="name"
+                               name="nama"
                                required>
                     </div>
 
@@ -396,8 +409,8 @@
                         <label for="attendance-confirmation" class="form-label">Konfirmasi Kehadiran</label>
                         <select class="form-select"
                                 id="attendance-confirmation"
-                                name="presence">
-                            <option value="">Pilih salah satu</option>
+                                name="kehadiran">
+                            <option selected>Pilih salah satu</option>
                             <option value="Hadir">Hadir</option>
                             <option value="Tidak Hadir">Tidak Hadir</option>
                         </select>
@@ -407,7 +420,7 @@
                         <label for="guest-message" class="form-label">Ucapan & Doa</label>
                         <textarea class="form-control"
                                   id="guest-message"
-                                  name="message"
+                                  name="ucapan"
                                   rows="4"
                                   required></textarea>
                     </div>

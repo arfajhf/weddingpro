@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ucapan extends Model
 {
-    //
+    protected $guarded = [];
 }

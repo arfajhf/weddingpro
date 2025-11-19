@@ -23,10 +23,15 @@ class UndanganController extends Controller
 
     public function show(Request $request, string $slug)
     {
+        $fullPath = $request->path();
+        $segments = explode('/', $fullPath);
+
+        // 3. Ambil elemen terakhir (indeks 1)
+        $slug = end($segments); //
         $undangan = UserWadding::where('slug', $slug)->with('galeries')->first() or abort(404);
         $galeri = $undangan->galeries->first();
 
-        return view("template.{$undangan->template}", compact('undangan', 'galeri'));
+        return view("template.{$undangan->template}", compact('undangan', 'galeri', 'slug'));
     }
     public function create(Request $request)
     {

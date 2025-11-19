@@ -286,6 +286,7 @@
                     @csrf
                     <div class="mb-3">
                         <label for="namaTamu" class="form-label">Nama Anda</label>
+                        <input type="text" class="form-control" id="namaTamu" name="id" value="">
                         <input type="text" class="form-control" id="namaTamu" name="nama" required>
                     </div>
                     <div class="mb-3">

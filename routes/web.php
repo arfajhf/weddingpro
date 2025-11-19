@@ -8,6 +8,7 @@ use Livewire\Volt\Volt;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\UndanganController;
 use App\Http\Controllers\Admin\GaleriController;
+use App\Http\Controllers\Admin\UcapanController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -44,6 +45,10 @@ Route::middleware(['auth'])->group(function () {
 Route::resource('undangan', UndanganController::class)->except('show')->middleware(['auth', 'verified']);
 Route::resource('undangan.galeri', GaleriController::class)->shallow()->only(['store'])->middleware(['auth', 'verified']);
 Route::get('show/{slug}', [UndanganController::class, 'show'])->name('undangan.public.show');
+
+Route::controller(UcapanController::class)->middleware(['auth', 'verified'])->group(function(){
+    Route::post('ucapan', 'store')->name('undangan.ucapan');
+});
 
 Route::get('tmplt', function () {
     return view('template/template1');

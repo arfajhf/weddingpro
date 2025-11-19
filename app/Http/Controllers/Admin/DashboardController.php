@@ -13,13 +13,18 @@ class DashboardController extends Controller
 {
     public function index(Request $request)
     {
+        $user = Auth::user();
 
+        if($user->role == 'user'){
+            $weddingCollection = UserWadding::where('user_id', $user->id)->get();
+            $data = [
+                'wedings' => $weddingCollection,
+                'coun' => $weddingCollection->count()
+            ];
 
-        if(Auth::user()->role === UserRole::User){
-            
+            return view('dashboardUser', compact('data'));
         }
 
-        return view('dashboard');
     }
 
 }

@@ -282,14 +282,15 @@
             <div class="container" style="max-width: 700px;">
                 <h2 class="display-font text-center" data-aos="fade-up">Buku Tamu</h2>
                 <p class="text-muted text-center mb-4" data-aos="fade-up" data-aos-delay="100">Berikan ucapan dan doa restu Anda kepada kami.</p>
-                <form data-aos="fade-up" data-aos-delay="200">
+                <form data-aos="fade-up" data-aos-delay="200" method="POST">
+                    @csrf
                     <div class="mb-3">
                         <label for="namaTamu" class="form-label">Nama Anda</label>
-                        <input type="text" class="form-control" id="namaTamu" required>
+                        <input type="text" class="form-control" id="namaTamu" name="nama" required>
                     </div>
                     <div class="mb-3">
                         <label for="konfirmasi" class="form-label">Konfirmasi Kehadiran</label>
-                        <select class="form-select" id="konfirmasi">
+                        <select class="form-select" id="konfirmasi" name="kehadiran">
                             <option selected>Pilih salah satu</option>
                             <option value="Hadir">Hadir</option>
                             <option value="Tidak Hadir">Tidak Hadir</option>
@@ -297,7 +298,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="ucapanTamu" class="form-label">Ucapan & Doa</label>
-                        <textarea class="form-control" id="ucapanTamu" rows="4" required></textarea>
+                        <textarea class="form-control" id="ucapanTamu" rows="4" name="ucapan" required></textarea>
                     </div>
                     <button type="submit" class="btn btn-dark">Kirim Ucapan</button>
                 </form>

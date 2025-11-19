@@ -297,19 +297,20 @@
 
                     <div class="col-md-6">
                         <h4 class="mb-4 text-center">Buku Tamu</h4>
-                        <form action="" method="POST">
+                        <form action="{{ route('undangan.ucapan') }}" method="POST">
                             @csrf
+                            <input type="hidden" name="id" value="{{ $undangan->id }}">
                             <div class="mb-3">
-                                <input type="text" class="form-control" placeholder="Nama Lengkap" name="name" required>
+                                <input type="text" class="form-control" placeholder="Nama Lengkap" name="nama" required>
                             </div>
                             <div class="mb-3">
-                                <select class="form-control" name="presence">
+                                <select class="form-control" name="kehadiran">
                                     <option value="Hadir">Hadir</option>
                                     <option value="Tidak Hadir">Berhalangan</option>
                                 </select>
                             </div>
                             <div class="mb-3">
-                                <textarea class="form-control" rows="3" placeholder="Pesan & Doa" name="message" required></textarea>
+                                <textarea class="form-control" rows="3" placeholder="Pesan & Doa" name="ucapan" required></textarea>
                             </div>
                             <button type="submit" class="btn-minimal w-100">Kirim Pesan</button>
                         </form>
@@ -368,7 +369,7 @@
         // Countdown Logic (Aman & Akurat)
         (function () {
             @php
-                $tgl = optional($undangan->tanggal_resepsi)->format('Y-m-d') ?? now()->addDays(7)->format('Y-m-d');
+                $tgl = \Carbon\Carbon::parse($undangan->tanggal_resepsi)->format('Y-m-d') ?? now()->addDays(7)->format('Y-m-d');
                 $waktu = $undangan->waktu_resepsi ?? '08:00:00';
                 if (strlen($waktu) == 5) $waktu .= ':00';
             @endphp

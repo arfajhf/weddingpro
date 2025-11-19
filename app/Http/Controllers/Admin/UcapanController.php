@@ -24,7 +24,7 @@ class UcapanController extends Controller
             'kehadiran' => $request->kehadiran,
         ]);
 
-        return redirect('show/' . $request->path)->with('success', 'Ucapan Berhasil di Kirim');
+        return redirect()->back()->with('success', 'Ucapan Berhasil di Kirim');
 
     }
 }

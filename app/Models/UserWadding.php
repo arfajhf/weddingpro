@@ -76,4 +76,9 @@ class UserWadding extends Model
     {
         return $this->hasMany(Galeri::class, 'weding_id', 'id');
     }
+
+    public function ucapans(): HasMany
+    {
+        return $this->hasMany(Ucapan::class, 'weding_id', 'id');
+    }
 }

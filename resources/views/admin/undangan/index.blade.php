@@ -193,7 +193,7 @@
 
                 // set form action -> route /undangan/destroy/{id}
                 var form = document.getElementById('deleteForm');
-                form.action = '{{ url("undangan/destroy") }}/' + id;
+                form.action = '{{ url("undangan") }}/' + id;
 
                 window._deleteModal.show();
             };
